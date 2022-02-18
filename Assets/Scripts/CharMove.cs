@@ -42,10 +42,10 @@ public class CharMove : MonoBehaviour
             transform.Rotate(0, rot * rotSpeed * Time.deltaTime, 0);
             //１秒間に３００度回転　rotSpeed=300
 
-            if (Input.GetButtonDown("Jump"))
+            if (Input.GetButtonDown("Jump"))//Unityで定義されたJump
             {
                 //ジャンプモーション開始
-                animator.SetTrigger("jump");
+                animator.SetTrigger("jump");//自分がつけた名前のjump
                 //Triggerは１回Trueになると1回ジャンプして勝手にFalseになる
                 //boolは自分で設定しないとtrue false変わらない
             }

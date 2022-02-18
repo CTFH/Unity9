@@ -17,6 +17,7 @@ public class CameraController : MonoBehaviour
             player.position + (-player.forward * 3.0f)
             + (player.up * 1f), Time.deltaTime * 10f);
         //Lerp使用で少し遅れて追いかけるのでよりナチュラルに追いかける　横向き姿少し見えたり
+        //Lerp第一引数と第二引数の間を第３引数の割合にしたものを返す
 
         //LookAt　カメラのZ軸（カメラの向き）を指定した座標（引数）に向けてくれる
         //PlayerPositionだとUnityちゃんの腰らへんだから1メートルプラスする
