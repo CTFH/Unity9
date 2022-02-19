@@ -6,6 +6,7 @@ public class CharMove : MonoBehaviour
 {
     Animator animator;
     CharacterController cc;
+    AudioSource audio;
 
     Vector3 dir = Vector3.zero;　//高さの方向（y軸方向）のことしたいから用意（ジャンプの概念の為）
     public float gravity = 20.0f;　//インスペクターから調整できるようにpublicにしている
@@ -16,7 +17,7 @@ public class CharMove : MonoBehaviour
     {
         animator = GetComponent<Animator>();　//コンポーネントの操作できるように自身のコンポーネントの取得（Awakeでするとデメリットがより少ない）
         cc = GetComponent<CharacterController>();
-
+        audio = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -59,17 +60,19 @@ public class CharMove : MonoBehaviour
         //transform forward Unityちゃんが向いてる向き　に　acc=0~1(押してないときは進まない)
         //dir がないと落ちてこなくなっちゃう
 
-        //移動した後着していたらy成分を0にする
+        //移動した後着(地？)していたらy成分を0にする
         if (cc.isGrounded)
         {
             dir.y = 0;
         }
     }
+    //animationイベント…animation クリップの特定のタイミングでイベントを発生させる
 
     //ジャンプモーションで地面から足が離れたときに呼ばれるイベント
     public void OnJumpStart()
     {
         //足が離れたらトランスフォームを上方に移動する。
-        dir.y = jumpPower;
+        dir.y = jumpPower;　//1秒間に8mの力（最初のフレームで８ｍの60分の１上がる13cm上がる）
+        audio.Play();//audioSourceのaudioClipに登録済みの声
     }
 }
